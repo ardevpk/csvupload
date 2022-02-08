@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icons link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- font-awesome_icons_link -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Style Css Link -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <header class="header_div">
+        <div class="container signin_page_main_container pb-3">
+            <div id="card">
+                <div id="card-content">
+                    <div id="card-title">
+                        <h2>Sign Up</h2>
+                    </div>
+                    <form method="post" action="/signup/" class="form">{% csrf_token %}
+                        <div class="">
+                            <div class="">
+                                <label style="padding-top:26px">
+                                    Username
+                                </label>
+                                <input id="user-email" class="form-content" type="name" name="uname" autocomplete="on"
+                                    placeholder="Username" required />
+                                <div class="form-border"></div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="user-password" style="padding-top:22px;">Password
+                            </label>
+                            <input id="user-password" class="form-content" type="password" name="pass"
+                                placeholder="Password" required />
+                            <div class="form-border"></div>
+                        </div>
+                        <div class="my-3">
+                            <label for="user-cpassword" style="padding-top:22px;">Confirm Password
+                            </label>
+                            <input id="user-cpassword" class="form-content" type="password" name="pass1"
+                                placeholder="Password" required />
+                            <!-- <div class="form-border"></div> -->
+                        </div>
+                        <input id="submit-btn" type="submit" name="submit" value="Sign Up" />
+                        <!-- <span class="text-center mt-2">or</span> -->
+                        <!-- <div class="icons_main_div d-flex">
+                            <div class="icon_div">
+                                <img src="img/icons8-google 1.png" alt="">
+                            </div>
+                            <div class="icon_div">
+                                <img src="img/icons8-facebook 1.png" alt="">
+                            </div>
+                            <div class="icon_div">
+                                <img src="img/icons8-twitter 1.png" alt="">
+                            </div>
+                        </div> -->
+                        <a href="/signin/" id="signup">Have an account?<span> Sign In</span></a>
+                    </form>
+                    {% if msg %}
+                    <div class="alert alert-danger my-3" role="alert">
+                        {{msg}}
+                      </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/script.js'%}"></script>
+</body>
+
+</html>

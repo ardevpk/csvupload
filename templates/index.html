@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icons link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- font-awesome_icons_link -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Style Css Link -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Sign In</title>
+</head>
+
+<body>
+    <header class="header_div">
+        <div class="container signin_page_main_container">
+            <div id="card">
+                <div id="card-content">
+                    
+                    <div id="card-title">
+                        
+                        <h2>Sign In</h2>
+                    </div>
+                    <form method="post" action="/signin/" class="form">{% csrf_token %}
+                        <label for="user-email" style="padding-top:10px">
+                            Username
+                        </label>
+                        <input id="user-email" class="form-content" type="name" name="uname" autocomplete="on"
+                            placeholder="Email Adress" required />
+                        <div class="form-border"></div>
+                        <label for="user-password" style="padding-top:42px">Password
+                        </label>
+                        <input id="user-password" class="form-content" type="password" name="pass"
+                            placeholder="Password" required />
+                        <div class="form-border"></div>
+                        <div class="div" style="padding-top: 36px;">
+                            <input id="submit-btn" type="submit" name="submit" value="Sign In" />
+                            <a href="/signup/" id="signup">Don't have account yet? <span>Sign Up</span></a>
+                        </div>
+                    </form>
+                    {% if msg %}
+                    <div class="alert alert-danger my-3" role="alert">
+                        {{msg}}
+                      </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+</body>
+
+</html>

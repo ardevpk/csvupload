@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins", sans-serif;
+}
+.header_div {
+  background: rgba(78, 78, 78, 1);
+  height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+label {
+  font-size: 11pt;
+}
+
+#card {
+  background: #fbfbfb;
+  border-radius: 8px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+  height: 460px;
+  max-width: 400px;
+  margin: auto;
+}
+#card-content {
+  padding: 12px 44px;
+}
+#card-title {
+  letter-spacing: 4px;
+  padding-bottom: 23px;
+  padding-top: 13px;
+  text-align: center;
+}
+#forgot-pass {
+  color: #005494;
+  font-size: 10pt;
+  margin-top: 3px;
+  text-align: right;
+  font-weight: 600;
+}
+.signin_page_main_container {
+  padding-top: 100px;
+}
+#signup {
+  color: #000;
+  font-size: 10pt;
+  margin-top: 16px;
+  text-align: center;
+}
+#signup span {
+  color: #005494;
+  font-weight: 600;
+}
+#submit-btn {
+  background: #4fa056;
+  border: none;
+  cursor: pointer;
+  color: white;
+  height: 42.3px;
+  margin: 0 auto;
+  width: 100%;
+}
+.form {
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+}
+.form-border {
+  background: -webkit-linear-gradient(right, #005494, #005494);
+  height: 1px;
+  width: 100%;
+}
+.form-content {
+  background: #fbfbfb;
+  border: none;
+  outline: none;
+  padding-top: 14px;
+}
+.underline-title {
+  background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+  height: 2px;
+  margin: -1.1rem auto 0 auto;
+  width: 89px;
+}
+.icons_main_div {
+  gap: 5px;
+}
+.icon_div {
+  border: 2px solid #eceef0;
+  width: 140px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

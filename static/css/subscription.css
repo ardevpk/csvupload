@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins", sans-serif;
+}
+.subs_cards_container {
+  margin-top: 100px;
+}
+.subs_cards_tittle_div h3 {
+  color: rgb(0, 0, 0);
+}
+.subs_card_main_div {
+  background-color: red;
+  height: 400px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 270px;
+  color: #fff;
+}
+.subs_cards_price_div {
+  padding-top: 10px;
+  text-align: center;
+}
+.subs_cards_price_div sup {
+  font-size: 25px;
+}
+.subs_cards_price_div span {
+  font-size: 15px;
+}
+.subs_cards_btn_div {
+  margin-top: 10px;
+}
+.subs_cards_btn_div button {
+  background: black;
+  color: #fff;
+  border: none;
+  width: 100%;
+  max-width: 200px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.price_plane_terms_div {
+  padding: 30px;
+}
+a {
+  text-decoration: none;
+}
+.price_plane_terms_div a {
+  color: #fff;
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icons link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- font-awesome_icons_link -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Style Css Link -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/drag_drop.css' %}">
+    <title>Subscription</title>
+</head>
+
+<body>
+
+    <form enctype="multipart/form-data" id="form">
+    <section>
+        <div class="container-fluid">
+            <div id="dropzone" onClick="selectFile(event)">
+                <span id="dropzonePlaceholder">Drop files here or click to select a file</span>
+                <span id="dropzoneLoading" class="hidden">Loading...</span>
+                <span id="dropzoneContent" class="hidden"></span>
+                <input id="file" type='file' accept='.csv' name="uploaded">
+    </section>
+    </form>
+    <!-- {% if msg %}
+    <div class="alert alert-danger my-3" role="alert">
+        {{msg}}
+      </div>
+    {% endif %} -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#file').on('change', function(e) {
+            console.log(e.target.files)
+            var token = '{{ csrf_token }}';
+            const formData = new FormData()
+            formData.append('file', e.target.files[0])
+            $.ajax({
+                url: "{% url 'index' %}",
+                type: 'POST',
+                data: formData,
+                headers: { 'X-CSRFToken': token },
+                processData: false,
+                contentType: false,
+                success: function () {
+                    console.log('Success')/* response message */
+                },
+                failure: function () {
+                    console.log('fail')
+                }
+            })
+        })
+    </script>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
