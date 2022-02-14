@@ -17,20 +17,28 @@
     <!-- Style Css Link -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/drag_drop.css' %}">
-    <title>Subscription</title>
+    <title>Csvupload</title>
 </head>
 
 <body>
 
-    <form enctype="multipart/form-data" id="form">
-    <section>
+    <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <div id="dropzone" onClick="selectFile(event)">
-                <span id="dropzonePlaceholder">Drop files here or click to select a file</span>
-                <span id="dropzoneLoading" class="hidden">Loading...</span>
-                <span id="dropzoneContent" class="hidden"></span>
-                <input id="file" type='file' accept='.csv' name="uploaded">
-    </section>
+            <a class="navbar-brand" href="/">Csvupload</a>
+            <a href="/allfiles/" class="btn btn-outline-success text-end">All Files</a>
+            <a href="/logout/" class="btn btn-outline-success">{{request.user}} | Logout</a>
+        </div>
+    </nav>
+
+    <form enctype="multipart/form-data" id="form">
+        <section>
+            <div class="container-fluid">
+                <div id="dropzone" onClick="selectFile(event)">
+                    <span id="dropzonePlaceholder">Drop files here or click to select a file</span>
+                    <span id="dropzoneLoading" class="hidden">Loading...</span>
+                    <span id="dropzoneContent" class="hidden"></span>
+                    <input id="file" type='file' accept='.csv' name="uploaded">
+        </section>
     </form>
     <!-- {% if msg %}
     <div class="alert alert-danger my-3" role="alert">
@@ -45,7 +53,7 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $('#file').on('change', function(e) {
+        $('#file').on('change', function (e) {
             console.log(e.target.files)
             var token = '{{ csrf_token }}';
             const formData = new FormData()

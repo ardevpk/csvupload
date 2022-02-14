@@ -39,9 +39,12 @@ def signup(request):
         password = request.POST['pass']
         cpassword = request.POST['pass1']
         if password == cpassword:
-            user = User.objects.create_user(username=username, password=password)
-            user.save()
-            return redirect('/signin/')
+            if User.objects.filter(username=username).exists():
+                return render(request, 'signup.html', {'msg':"Username Already Exists!"})
+            else:
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                return redirect('/signin/')
         else:
             return render(request, 'signup.html', {'msg':"Passwords Not Matched!"})
     else:
@@ -56,3 +59,7 @@ def subscription(request):
 def logouted(request):
     logout(request)
     return redirect('/signin/')
+
+def allfiles(request):
+    data = uploader.objects.all()
+    return render(request, "allfiles.html", {"data": data})
