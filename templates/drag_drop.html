@@ -54,7 +54,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $('#file').on('change', function (e) {
-            console.log(e.target.files)
             var token = '{{ csrf_token }}';
             const formData = new FormData()
             formData.append('file', e.target.files[0])
@@ -65,17 +64,27 @@
                 headers: { 'X-CSRFToken': token },
                 processData: false,
                 contentType: false,
-                success: function () {
-                    console.log('Success')/* response message */
+                success: function (response) {
+                    
+                    if(response['data'] == false){
+                        swal({
+                            title: "Error!",
+                            text: "File Already Exists!",
+                            icon: "error",
+                          })}
+                    else{
+                        let val = JSON.stringify(e.target.files[0].name).replace(/ /g, '_').replace('(', '').replace(')', '').replace(/"/g, '');
+                        window.location.href = '/media/' + val;
+                    }
                 },
                 failure: function () {
-                    console.log('fail')
+                    alert('fail')
                 }
             })
         })
     </script>
 
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

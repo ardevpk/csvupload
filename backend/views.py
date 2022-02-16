@@ -1,20 +1,32 @@
+import cProfile
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import uploader
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
-
+from .attachment import bulk_upload
+import os
 
 def index(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             fileu = request.FILES['file'] if 'file' in request.FILES else None
             if fileu is not None:
-                fileS = uploader(username=request.user.username, file=fileu)
-                fileS.save()
-            return JsonResponse("Success", safe=False)
+                one = str(fileu).lower()
+                two = one.replace("(", "")
+                three = two.replace(")", "")
+                mainFile = three.replace(" ", "_")
+                if uploader.objects.filter(file=mainFile).exists() != True:
+                    print('In else')
+                    cpath = os.getcwd()
+                    fileS = uploader(username=request.user, file=fileu)
+                    fileS.save()
+                    fileG = uploader.objects.get(file=mainFile)
+                    mFile = os.path.join(cpath, "media/{}".format(fileG.file))
+                    bulk_upload(mFile)
+                    return JsonResponse("{'data' : True}", safe=False)
+                if uploader.objects.filter(file=mainFile).exists():
+                    return JsonResponse({'data' : False}, safe=False)
         return render(request, 'drag_drop.html')
     else:
         return redirect('/signin/')
