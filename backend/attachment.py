@@ -35,6 +35,7 @@ def bulk_upload(file_name):
         print(line)
         csv_writer.writerow(line)
     output_file.close()
+    in_data.close()
     return(file_name)
 
     

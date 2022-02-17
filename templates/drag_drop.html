@@ -37,7 +37,7 @@
                     <span id="dropzonePlaceholder">Drop files here or click to select a file</span>
                     <span id="dropzoneLoading" class="hidden">Loading...</span>
                     <span id="dropzoneContent" class="hidden"></span>
-                    <input id="file" type='file' accept='.csv' name="uploaded">
+                    <input id="file" type='file' accept='.csv, .tsv' name="uploaded">
         </section>
     </form>
     <!-- {% if msg %}
@@ -72,9 +72,17 @@
                             text: "File Already Exists!",
                             icon: "error",
                           })}
+                    else if (response['data'] == 'false1'){
+                        swal({
+                            title: "Error!",
+                            text: "You Can Only Upload Csv Or Tsv FileType",
+                            icon: "error",
+                          })
+                    }
                     else{
                         let val = JSON.stringify(e.target.files[0].name).replace(/ /g, '_').replace('(', '').replace(')', '').replace(/"/g, '');
                         window.location.href = '/media/' + val;
+                        window.href = '/';
                     }
                 },
                 failure: function () {

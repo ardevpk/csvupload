@@ -12,21 +12,24 @@ def index(request):
         if request.method == 'POST':
             fileu = request.FILES['file'] if 'file' in request.FILES else None
             if fileu is not None:
-                one = str(fileu).lower()
-                two = one.replace("(", "")
-                three = two.replace(")", "")
-                mainFile = three.replace(" ", "_")
-                if uploader.objects.filter(file=mainFile).exists() != True:
-                    print('In else')
-                    cpath = os.getcwd()
-                    fileS = uploader(username=request.user, file=fileu)
-                    fileS.save()
-                    fileG = uploader.objects.get(file=mainFile)
-                    mFile = os.path.join(cpath, "media/{}".format(fileG.file))
-                    bulk_upload(mFile)
-                    return JsonResponse("{'data' : True}", safe=False)
-                if uploader.objects.filter(file=mainFile).exists():
-                    return JsonResponse({'data' : False}, safe=False)
+                if ".csv" in os.path.splitext(str(fileu))[-1] or ".tsv" in os.path.splitext(str(fileu))[-1]:
+                    one = str(fileu)
+                    two = one.replace("(", "")
+                    three = two.replace(")", "")
+                    mainFile = three.replace(" ", "_")
+                    if uploader.objects.filter(file=mainFile).exists() != True:
+                        cpath = os.getcwd()
+                        fileS = uploader(username=request.user, file=fileu)
+                        fileS.save()
+                        fileG = uploader.objects.get(file=mainFile)
+                        mFile = os.path.join(cpath, "media/{}".format(fileG.file))
+                        bulk_upload(mFile)
+                        print("edited")
+                        return JsonResponse({'data' : True}, safe=False)
+                    elif uploader.objects.filter(file=mainFile).exists():
+                        return JsonResponse({'data' : False}, safe=False)
+                else:
+                    return JsonResponse({'data' : 'false1'}, safe=False)
         return render(request, 'drag_drop.html')
     else:
         return redirect('/signin/')
