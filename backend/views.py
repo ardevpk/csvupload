@@ -71,6 +71,9 @@ def subscription(request):
     else:
         return redirect('/signin/')
 
+def package(request):
+    return render(request, 'package.html')
+
 def logouted(request):
     logout(request)
     return redirect('/signin/')
