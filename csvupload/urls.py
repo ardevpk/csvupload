@@ -19,6 +19,9 @@ from backend import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from backend import views
+from backend.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +32,9 @@ urlpatterns = [
     path('logout/', views.logouted, name='logout'),
     path('allfiles/', views.allfiles, name='allfiles'),
     path('package', views.package, name="package"),
+    path('success/', PaymentSuccessView.as_view(), name='success'),
+    path('failed/', PaymentFailedView.as_view(), name='failed'),
+    path('api/checkout-session/', create_checkout_session, name='api_checkout_session'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
