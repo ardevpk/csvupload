@@ -173,7 +173,8 @@ class PaymentSuccessView(TemplateView):
         order = get_object_or_404(StripeOrder, stripe_payment_intent=session.payment_intent)
         order.status = 'Paid'
         order.save()
-        has_paid = Paid.objects.get_or_create(user = request.user)
+        has_paid, true_false = Paid.objects.get_or_create(user = request.user)
+        print(has_paid, true_false, 'Hhihihihi')
         has_paid.has_paid = True
         has_paid.save()
         return render(request, self.template_name)
