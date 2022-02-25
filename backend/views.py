@@ -181,3 +181,5 @@ class PaymentSuccessView(TemplateView):
 
 class PaymentFailedView(TemplateView):
     template_name = "payments/payment_failed.html"
+
+####backend
