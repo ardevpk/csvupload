@@ -65,7 +65,6 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         print(user)
         if user is not None:
-            Paid.objects.create(user=user, has_paid=False)
             login(request, user)
             return redirect('/')
         else:
@@ -84,6 +83,7 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username, password=password)
                 user.save()
+                Paid.objects.create(user=user, has_paid=False)
                 return redirect('/signin/')
         else:
             return render(request, 'signup.html', {'msg':"Passwords Not Matched!"})
@@ -173,7 +173,7 @@ class PaymentSuccessView(TemplateView):
         order = get_object_or_404(StripeOrder, stripe_payment_intent=session.payment_intent)
         order.status = 'Paid'
         order.save()
-        has_paid = Paid.objects.get(user = request.user)
+        has_paid = Paid.objects.get_or_create(user = request.user)
         has_paid.has_paid = True
         has_paid.save()
         return render(request, self.template_name)
